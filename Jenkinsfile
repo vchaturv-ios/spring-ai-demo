@@ -33,14 +33,25 @@ pipeline {
             }
         }
 
+        // stage('Deploy') {
+        //     steps {
+        //         script {
+        //             // Assuming the JAR file is in the target directory
+        //             sh 'java -jar target/springaidemo-0.0.1-SNAPSHOT.jar &'
+        //         }
+        //     }
+        // }
+
         stage('Deploy') {
             steps {
                 script {
                     // Assuming the JAR file is in the target directory
-                    sh 'java -jar target/springaidemo-0.0.1-SNAPSHOT.jar &'
+                    sh 'nohup java -jar target/springaidemo-0.0.1-SNAPSHOT.jar > app.log 2>&1 &'
                 }
             }
         }
+
+    }
     }
 
     post {
