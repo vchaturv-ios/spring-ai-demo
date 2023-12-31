@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        choice(choices: ['origin/main', 'origin/develop'], description: 'Select the branch to build', name: 'BRANCH')
+        choice(choices: ['origin/master'], description: 'Select the branch to build', name: 'BRANCH')
     }
 
     tools {
