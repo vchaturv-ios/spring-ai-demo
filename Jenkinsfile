@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters {
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', description: 'Select the branch to build', name: 'BRANCH'
+    }
+
     tools {
         maven 'Maven' // Name configured in Jenkins for Maven
         jdk 'JDK17'  // Name configured in Jenkins for JDK
@@ -9,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                checkout([$class: 'GitSCM', branches: [[name: params.BRANCH]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'vchaturv-ios/******', url: 'https://github.com/vchaturv-ios/spring-ai-demo.git']]])
             }
         }
 
