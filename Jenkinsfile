@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', description: 'Select the branch to build', name: 'BRANCH'
+        choice(choices: ['origin/main', 'origin/develop'], description: 'Select the branch to build', name: 'BRANCH')
     }
 
     tools {
